@@ -28,14 +28,12 @@ public class PayoutTable {
    * @throws IOException if payout file cannot be found or read.
    */
   public PayoutTable(Path payoutsPath) throws IOException {
-    payouts = Files.readAllLines(payoutsPath)
-        .stream()
-        .map((line) -> Arrays.stream((line.trim().split(SPLIT_REGEX)))
-                             .mapToInt(Integer::parseInt)
-                             .toArray())
-        .toArray(int[][]::new);
+    payouts = Files.lines(payoutsPath)
+                   .map((line) -> Arrays.stream((line.trim().split(SPLIT_REGEX)))
+                                        .mapToInt(Integer::parseInt)
+                                        .toArray())
+                   .toArray(int[][]::new);
       System.out.print(Arrays.toString(payouts));
-
   }
   
   /**
