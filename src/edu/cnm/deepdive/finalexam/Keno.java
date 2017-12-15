@@ -41,8 +41,6 @@ public class Keno {
   public static void main(String[] args) throws IOException, URISyntaxException {
     ClassLoader loader = Keno.class.getClassLoader();
     new Keno(Paths.get(loader.getResource(PAYOUTS_RESOURCE).toURI()));
-
-
     // TODO - Deal with command line args, or pass them along to Keno instance.
     try {
       InputStreamReader isr = new InputStreamReader(System.in);
@@ -50,7 +48,6 @@ public class Keno {
       String line = br.readLine();
       strs = line.trim().split(" ");
 
-//      System.out.println("Please enter 15 numbers from 1 to 80.");
       if (line.equals("-?") || line.equals("-help")) {
         System.out.println(
             "1. Choose a number from 1 to 80. \n" +
@@ -73,11 +70,13 @@ public class Keno {
           }
         }
       }
-            if (isInvalid()) {
+
+      if (isInvalid()) {
         System.out.println("invalid number!");
       } else {
         generateAndRandomize();
       }
+
 
     } catch (IOException e) {
       throw new RuntimeException(e);
@@ -86,6 +85,10 @@ public class Keno {
 
   }
 
+  /**
+   * Checks if numbers are duplicated
+   * @return returns true or false if a number is valid
+   */
   public static boolean isInvalid() {
     for (int i = 0; i < strs.length; i++) {
       for (int j = i + 1; j < strs.length; j++) {
@@ -98,7 +101,9 @@ public class Keno {
   }
 
   /**
-   * Generate, Shuffles, and
+   * Generate, Shuffles, and compares userSelection with computerSelection and track
+   * how many times userSelection and computerSelection matches.
+   *
    */
   public static void generateAndRandomize() {
     List<Integer> randomEighty = new ArrayList<>();
@@ -118,7 +123,6 @@ public class Keno {
     }
     System.out.println("Number of wins : " + indexWin);
   }
-
 
 
   /**
