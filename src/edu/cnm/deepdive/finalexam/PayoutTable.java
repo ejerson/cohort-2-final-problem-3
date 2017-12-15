@@ -33,7 +33,9 @@ public class PayoutTable {
                                         .mapToInt(Integer::parseInt)
                                         .toArray())
                    .toArray(int[][]::new);
-      System.out.print(Arrays.toString(payouts));
+//      System.out.print(Arrays.toString(payouts));
+      // TODO map payout to matching result
+
   }
   
   /**
