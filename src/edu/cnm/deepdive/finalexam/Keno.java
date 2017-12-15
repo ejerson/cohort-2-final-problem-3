@@ -82,7 +82,7 @@ public class Keno {
       }
 
       if (line.equals("")) {
-        System.out.println("Please enter a number.");
+        System.exit(1);
       } else {
         if (strs.length > 15) {
           System.out.println("Please choose less than 15 numbers.");
