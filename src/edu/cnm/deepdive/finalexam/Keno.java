@@ -34,7 +34,7 @@ public class Keno {
    */
   public static int[] userSelection = new int[15];
   /**
-   * Stores the string value of user input
+   * Stores the stringComputerSelections value of user input
    */
   public static String[] strs;
   /**
@@ -50,6 +50,16 @@ public class Keno {
    * An instance of PayoutTable
    */
   private static PayoutTable payoutTable;
+
+  /**
+   * Used collect and display computerSelection
+   */
+  public static StringBuilder stringComputerSelections = new StringBuilder();
+
+  /**
+   * Used collect and display computerSelection
+   */
+  public static StringBuilder stringUserSelections = new StringBuilder();
 
   /**
    * Entry point for Keno application.
@@ -126,15 +136,22 @@ public class Keno {
     Collections.shuffle(randomEighty);
     for (int i = 0; i < 20; i++) {
       computerSelection.add(randomEighty.get(i));
+      stringComputerSelections.append(" " + computerSelection.get(i));
     }
 
     for (int i = 0; i < userSelection.length; i++) {
+      if (userSelection[i] < 80 && userSelection[i] != 0) {
+
+        stringUserSelections.append(" " + userSelection[i]);
+      }
       if (computerSelection.contains(userSelection[i])) {
         indexWin++;
       }
-//      System.out.println("Matches : " + userSelection[i]);
+
     }
-    System.out.println("Number of wins : " + indexWin);
+    System.out.println("You've selected : " + stringUserSelections);
+    System.out.println("The computer selected : " + stringComputerSelections);
+    System.out.println("Number of matches : " + indexWin);
   }
 
 
