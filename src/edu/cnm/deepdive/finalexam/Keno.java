@@ -16,11 +16,17 @@ import java.util.List;
  */
 public class Keno {
 
-  /** Classpath-relative location of payouts file. */
+  /**
+   * Classpath-relative location of payouts file.
+   */
   public static final String PAYOUTS_RESOURCE = "resources/payouts.txt";
-  /** Minimum value (inclusive) in number pool (and minimum valid pick). */
+  /**
+   * Minimum value (inclusive) in number pool (and minimum valid pick).
+   */
   public static final int MIN_VALUE = 1;
-  /** Maximum value (inclusive) in number pool (and maximum valid pick). */
+  /**
+   * Maximum value (inclusive) in number pool (and maximum valid pick).
+   */
   public static final int MAX_VALUE = 80;
 
   /**
@@ -47,10 +53,6 @@ public class Keno {
 
   /**
    * Entry point for Keno application.
-   *
-   * @param args
-   * @throws IOException
-   * @throws URISyntaxException
    */
   public static void main(String[] args) throws IOException, URISyntaxException {
     ClassLoader loader = Keno.class.getClassLoader();
@@ -69,7 +71,7 @@ public class Keno {
                 "3. You start with $100 in your account. \n");
       }
 
-      if (line.equals("")){
+      if (line.equals("")) {
         System.out.println("Please enter a number.");
       } else {
         if (strs.length > 15) {
@@ -97,6 +99,7 @@ public class Keno {
 
   /**
    * Checks if numbers are duplicated
+   *
    * @return returns true or false if a number is valid
    */
   public static boolean isInvalid() {
@@ -111,9 +114,8 @@ public class Keno {
   }
 
   /**
-   * Generate, Shuffles, and compares userSelection with computerSelection and track
-   * how many times userSelection and computerSelection matches.
-   *
+   * Generate, Shuffles, and compares userSelection with computerSelection and track how many times
+   * userSelection and computerSelection matches.
    */
   public static void generateAndRandomize() {
     List<Integer> randomEighty = new ArrayList<>();
@@ -127,8 +129,9 @@ public class Keno {
     }
 
     for (int i = 0; i < userSelection.length; i++) {
-      if (computerSelection.contains(userSelection[i]))
+      if (computerSelection.contains(userSelection[i])) {
         indexWin++;
+      }
 //      System.out.println("Matches : " + userSelection[i]);
     }
     System.out.println("Number of wins : " + indexWin);
@@ -136,11 +139,11 @@ public class Keno {
 
 
   /**
-   * Initializes Keno instance by creating the payout table and (eventually)
-   * creating a number pool, which will be shuffled and drawn from in each play.
-   *  
-   * @param payoutsPath     location of payout file.
-   * @throws IOException    if payout file cannot be found or read.
+   * Initializes Keno instance by creating the payout table and (eventually) creating a number pool,
+   * which will be shuffled and drawn from in each play.
+   *
+   * @param payoutsPath location of payout file.
+   * @throws IOException if payout file cannot be found or read.
    */
   public Keno(Path payoutsPath) throws IOException {
     payoutTable = new PayoutTable(payoutsPath);
@@ -155,13 +158,12 @@ public class Keno {
   }
 
   /**
-   * Checks <code>int</code> array of picks (which <strong>must</strong> already
-   * be sorted) for validity. If any picks are less that {@link #MIN_VALUE} or
-   * greater than {@link #MAX_VALUE|, or if any picks are duplicated, then the 
-   * picks are considered invalid.
-   *  
-   * @param sortedPicks   values picked in Keno play.
-   * @return              <code>true</code> if picks are valid; false otherwise.
+   * Checks <code>int</code> array of picks (which <strong>must</strong> already be sorted) for
+   * validity. If any picks are less that {@link #MIN_VALUE} or greater than {@link #MAX_VALUE|, or
+   * if any picks are duplicated, then the picks are considered invalid.
+   *
+   * @param sortedPicks values picked in Keno play.
+   * @return <code>true</code> if picks are valid; false otherwise.
    */
   protected static boolean picksAreValid(int[] sortedPicks) {
     int previousPick = Integer.MIN_VALUE;
@@ -180,6 +182,5 @@ public class Keno {
     return valid;
   }
 
-  
 
 }
