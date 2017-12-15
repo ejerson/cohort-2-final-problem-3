@@ -76,13 +76,9 @@ public class Keno {
       } else {
         generateAndRandomize();
       }
-
-
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
-
-
   }
 
   /**
