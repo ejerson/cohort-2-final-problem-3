@@ -23,12 +23,26 @@ public class Keno {
   /** Maximum value (inclusive) in number pool (and maximum valid pick). */
   public static final int MAX_VALUE = 80;
 
+  /**
+   * Stores the values selected by the user as a collection of int
+   */
   public static int[] userSelection = new int[15];
+  /**
+   * Stores the string value of user input
+   */
   public static String[] strs;
+  /**
+   * Stores the first 20 of the randomly generated numbers by the computer
+   */
   public static List<Integer> computerSelection = new ArrayList<>();
+  /**
+   * Counter for how many matches a user gets
+   */
   public static int indexWin = 0;
-  public static int indexLoss = 0;
 
+  /**
+   * An instance of PayoutTable
+   */
   private static PayoutTable payoutTable;
 
   /**
